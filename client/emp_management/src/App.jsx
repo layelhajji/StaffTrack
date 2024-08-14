@@ -1,13 +1,19 @@
 import Navbar from "./components/navbar/Navbar"
 import {Routes,Route} from 'react-router-dom'
-import L
+import Login from './components/login/Login'
+import Dashboard from './components/dashboard/Dashboard'
+import AddEmp from './components/addEmployee/AddEmp'
+
+
 
 const App = () => {
   return (
     <div>
       <Navbar></Navbar>
       <Routes>
-        <Route path='/' element={<Login></Login>}></Route>
+        <Route path='/'  element={<Login></Login>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        <Route path='/addEmp' element={<AddEmp/>}></Route>
       </Routes>
     </div>
   )

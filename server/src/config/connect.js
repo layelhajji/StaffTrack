@@ -1,4 +1,6 @@
 const mongoose=require('mongoose')
+const bcrypt=require("bcrypt")
+const Admin = require('../models/admin'); 
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/Employee_Management")
@@ -17,16 +19,7 @@ mongoose.connection.on('connected', () => {
 module.exports=mongoose;
 
 
-
-
-
-
-
-
-const bcrypt=require("bcrypt")
-
-const Admin = require('../models/admin'); 
-
+//initialiser les admins
 const initializeAdmins = async () => {
   try {
     
@@ -49,10 +42,10 @@ const initializeAdmins = async () => {
     }
 
     console.log('Admin initialization completed.');
-    mongoose.connection.close();
+    
   } catch (error) {
     console.error('Error initializing admins:', error);
-    mongoose.connection.close();
+    
   }
 };
 

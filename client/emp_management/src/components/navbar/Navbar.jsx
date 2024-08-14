@@ -1,25 +1,26 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 
+
 function Navbar() {
   const token = localStorage.getItem("token");
   const navigate=useNavigate()
   const handlelogOUt=()=>{
     localStorage.removeItem("token")
-    navigate("/login")}
+    navigate("/")}
 
   return (
     <>
     {token ? (
       <>
       <nav style={styles.navbar}>
-      <div style={styles.logo}>MonSite</div>
+      <div style={styles.logo}>Employee Management</div>
       <ul style={styles.navLinks}>
        
-         <li style={styles.navItem}><Link to="/" style={styles.navLink}>Home</Link></li>
-         <li style={styles.navItem}><Link to="/about" style={styles.navLink}>About</Link></li>
-         <li style={styles.navItem}><Link to="/services" style={styles.navLink}>Services</Link></li>
-         <li style={styles.navItem}><Link to="/login" style={styles.navLink} onClick={handlelogOUt}>Log Out</Link></li>
+         
+         <li style={styles.navItem}><Link to="/dashboard" style={styles.navLink}>Dashboard</Link></li>
+         <li style={styles.navItem}><Link to="/addEmp" style={styles.navLink}>Add Employee</Link></li>
+         <li style={styles.navItem}><Link to="/" style={styles.navLink} onClick={handlelogOUt}>Log Out</Link></li>
        
        
        
@@ -29,19 +30,7 @@ function Navbar() {
     </>
     ):(<>
     
-      <nav style={styles.navbar}>
-      <div style={styles.logo}>MonSite</div>
-      <ul style={styles.navLinks}>
-       
-         <li style={styles.navItem}><Link to="/register" style={styles.navLink}>Register</Link></li>
-        
-         <li style={styles.navItem}><Link to="/login" style={styles.navLink} >Log In</Link></li>
-       
-       
-       
-       
-      </ul>
-    </nav>
+     
     </>)}
     </>
     
