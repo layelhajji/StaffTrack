@@ -45,7 +45,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#7096D1',
+    backgroundColor: '#657fad',
     padding: '10px 80px',
   },
   logo: {
