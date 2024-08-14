@@ -5,7 +5,7 @@ const cors=require('cors')
 
 router.use(cors())
 
-router.post('/',login)
+router.post('/login',login)
 
 
 module.exports=router;
