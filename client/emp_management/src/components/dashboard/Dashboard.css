@@ -1,0 +1,43 @@
+/* Centre le tableau sur la page */
+table {
+    margin: 10px auto; /* Centre horizontalement */
+    width: 80%; /* Largeur du tableau */
+    border-collapse: collapse; /* Supprime les espaces entre les bordures des cellules */
+  }
+  .titre{
+    
+    padding-left: 80px;
+    margin: 50px;
+  }
+  /* Applique une bordure autour du tableau */
+  th, td {
+    padding: 10px; /* Ajoute de l'espace à l'intérieur des cellules */
+    text-align: left; /* Aligne le texte à gauche */
+    border: 1px solid #ddd; /* Ajoute une bordure aux cellules */
+  }
+  
+  /* Applique un fond gris clair aux en-têtes */
+  th {
+    background-color: #f2f2f2;
+    align-items: center;
+  }
+  
+  /* Change la couleur de fond des lignes au survol */
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Style général du tableau */
+  table {
+    border: 2px solid #ccc; /* Bordure autour du tableau */
+    border-radius: 8px; /* Coins arrondis pour le tableau */
+  
+}
+.action{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+}
+
+  

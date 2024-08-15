@@ -7,12 +7,11 @@ async function createEmp(EmployeeData) {
     const existingEmployee = await Employee.findOne({ EmployeeID });
     
     if (existingEmployee) {
-       
-        console.log('Employee already exists:', existingEmployee);
-        return existingEmployee; 
+        // Retournez une réponse claire indiquant l'existence
+        return { success: false, message: "Employee already exists", employee: existingEmployee };
     }
 
-    
+    // Créez un nouvel employé
     const newEmployee = new Employee({
         EmployeeID,
         fullName,
@@ -22,7 +21,14 @@ async function createEmp(EmployeeData) {
     });
 
     const savedEmployee = await newEmployee.save();
-    return savedEmployee;
+    return { success: true, employee: savedEmployee };
 }
 
-module.exports = { createEmp };
+
+
+async function getAllEmployees() {
+    return await Employee.find({})
+    
+}
+
+module.exports = { createEmp ,getAllEmployees};

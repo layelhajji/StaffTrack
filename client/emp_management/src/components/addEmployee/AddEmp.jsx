@@ -36,6 +36,7 @@ const AddEmp = () => {
 
             if (response.ok) {
                 alert("Employee added successfully");
+                console.log("c bon ")
                 navigate("/dashboard");
             } else if (response.status === 409) {
                 alert("Employee already exists");
