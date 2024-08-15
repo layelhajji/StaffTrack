@@ -24,8 +24,8 @@ const initializeAdmins = async () => {
   try {
     
     const admins = [
-      { name: 'Admin One', email: 'admin1@example.com', password: 'password123' },
-      { name: 'Admin Two', email: 'admin2@example.com', password: 'password456' },
+      { name: 'Admin One', email: 'admin1@gmail.com', password: 'admin1@123' },
+      { name: 'Admin Two', email: 'admin2@gmail.com', password: 'admin2@123' },
       
     ];
 
