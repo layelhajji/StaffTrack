@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 
+
 function Navbar() {
   const token = localStorage.getItem("token");
   const navigate=useNavigate()
@@ -11,17 +12,17 @@ function Navbar() {
     navigate("/")}
 
   return (
-    <>
+    <div >
     {token ? (
       <>
       <nav style={styles.navbar}>
-      <div style={styles.logo}>Employee Management</div>
+      <div className='header_title' style={styles.logo}>Employee Management</div>
       <ul style={styles.navLinks}>
        
          
-         <li style={styles.navItem}><Link to="/dashboard" style={styles.navLink}>Dashboard</Link></li>
-         <li style={styles.navItem}><Link to="/addEmp" style={styles.navLink}>Add Employee</Link></li>
-         <li style={styles.navItem}><Link to="/" style={styles.navLink} onClick={handlelogOUt}>Log Out</Link></li>
+         <li className='header_link' style={styles.navItem}><Link to="/dashboard" style={styles.navLink}>Dashboard</Link></li>
+         <li className='header_link'style={styles.navItem}><Link to="/addEmp" style={styles.navLink}>Add Employee</Link></li>
+         <li className='header_link' style={styles.navItem}><Link to="/" style={styles.navLink} onClick={handlelogOUt}>Log Out</Link></li>
        
        
        
@@ -32,7 +33,7 @@ function Navbar() {
     ):(<>
      
     </>)}
-    </>
+    </div>
     
     
   );

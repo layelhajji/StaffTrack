@@ -53,10 +53,10 @@ const Dashboard = () => {
   }
 
   return (
-    <>
-    <h1 className='titre'>Employees List</h1>
+    
+    
     <div >
-      
+    <h1 className='titre'>Employees List</h1>
       
       <table>
         <thead>
@@ -88,7 +88,7 @@ const Dashboard = () => {
         </tbody>
       </table>
     </div>
-    </>
+    
    
   );
 };

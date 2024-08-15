@@ -5,3 +5,28 @@ body {
     font-family: Arial, sans-serif;
     font-size: large;
   }
+  
+  
+  @media screen and (max-width: 768px) {
+    .header_title {
+      font-size: 1rem; /* Adjust title size */
+    }
+    .header_link {
+      font-size: 0.8rem; /* Adjust link size */
+    }
+    .navbar {
+      padding: '10px 20px'; /* Reduce padding */
+      flex-direction: column; /* Stack items vertically */
+    }
+    .navLinks {
+      flex-direction: column; /* Stack links vertically */
+    }
+    .navItem {
+      margin-left: 0; /* Remove left margin */
+      margin-bottom: 10px; /* Add bottom margin for spacing */
+    }
+  }
+  
+
+
+
