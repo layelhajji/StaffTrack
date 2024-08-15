@@ -30,5 +30,14 @@ async function getAllEmployees() {
     return await Employee.find({})
     
 }
+async function getEmployeeByID(employeeId) {
+    return await Employee.findById(employeeId)
+    
+}
+async function deleteEmployee(employeeId) {
+    return await Employee.findByIdAndDelete(employeeId)
+    
+}
 
-module.exports = { createEmp ,getAllEmployees};
+
+module.exports = { createEmp ,getAllEmployees,getEmployeeByID,deleteEmployee};
