@@ -1,0 +1,48 @@
+.formulaire{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin:200px;
+    margin-top:240px;
+
+    
+    
+}
+form h1{
+    color:black;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+p{
+    float: left;
+    display: flex;
+    gap: 10px;
+
+}
+.formulaire form{
+    
+    border: 2px solid #ccc;
+    padding: 30px;
+    width: 45%;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow:0 2px 4px rgb(0, 0,0, 0.1);
+}
+
+.formulaire form label{
+    font-weight: bold;
+    float: left;
+    color:#002566;
+}
+.custom-button {
+    background-color: #002566;
+    border-color: #002566;
+    color: white; /* Pour rendre le texte visible */
+}
+
+.custom-button:hover {
+    background-color: #556a8b; /* Une teinte légèrement plus foncée pour le hover */
+    border-color: #556a8b;
+}
+

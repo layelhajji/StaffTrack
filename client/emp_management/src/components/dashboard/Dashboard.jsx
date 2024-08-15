@@ -1,12 +1,14 @@
 import './Dashboard.css'
 import { useEffect, useState } from 'react';
 import {Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const Dashboard = () => {
   const [Employees, setEmployees] = useState([]);
+  const navigate=useNavigate();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -45,7 +47,10 @@ const Dashboard = () => {
       console.error('Error deleting employee:', error);
     }
   }
-  
+  const handleUpdate=(userId)=>{
+    navigate(`/employee/${userId}`)
+
+  }
 
   return (
     <>
@@ -73,7 +78,7 @@ const Dashboard = () => {
               <td>{Employee.phone}</td>
               <td>{Employee.joinedDate}</td>
               <td className='action'>
-                <Button variant="dark">Update</Button>
+                <Button variant="dark"  onClick={()=>handleUpdate(Employee._id)}>Update</Button>
                 <Button variant="danger"
                 onClick={()=>handleDelete(Employee._id)}>Delete</Button>
 
