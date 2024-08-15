@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useParams,useNavigate } from "react-router-dom"
 import { Form, Button } from "react-bootstrap";
 import { useState ,useEffect} from "react";
+
 import './UpdateEmp.css'
 
 const UpdateEmp = () => {
+  const navigate= useNavigate()
   const {id}=useParams();
   const [formData, setFormData] = useState({
     EmployeeID: "",
@@ -22,9 +24,8 @@ const handleInputChange = (event) => {
 useEffect(() => {
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/employee/${id}`, {
-       
-        
+      const response = await fetch(`http://localhost:3000/api/employee/${id}`, {
+      
       });
       const data = await response.json();
       setFormData(data);
@@ -35,10 +36,52 @@ useEffect(() => {
 
   fetchUsers();
 }, []);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log("Form submitted!");
+
+  if (!formData.EmployeeID || !formData.fullName || !formData.age || !formData.phone || !formData.joinedDate) {
+      alert("All fields are required");
+      return;
+  }
+
+  try {
+      const response = await fetch(`http://127.0.0.1:3000/api/employee/${id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      console.log("Result:", result);
+
+      if (response.ok) {
+          alert("Employee Updated successfully");
+         
+          navigate("/dashboard");
+      } else if (response.status === 409) {
+          alert("Employee already exists");
+      } else {
+          console.error("Failed to update:", result.message);
+      }
+  } catch (error) {
+      console.error("Error during submission:", error.message);
+  } finally {
+      setFormData({
+          EmployeeID: "",
+          fullName: "",
+          age: "",
+          phone: "",
+          joinedDate: ""
+      });
+  }
+};
 
   return (
     <div className="formulaire">
-    <Form >
+    <Form  onSubmit={handleSubmit}>
         <h1>Update Employee</h1>
         <Form.Group className="mb-3" controlId="formEmployeeID">
             <Form.Label>Employee ID</Form.Label>
