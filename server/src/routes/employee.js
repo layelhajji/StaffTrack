@@ -9,6 +9,7 @@ router.use(cors())
 router.post('/add',EmpController.createEmp)
 router.get('/employee',EmpController.getAllEmployees)
 router.get('/employee/:id',EmpController.getEmployeeByID)
+router.patch('/employee/:id',EmpController.updateEmployee)
 router.delete('/employee/:id',EmpController.deleteEmployee)
 
 

@@ -61,5 +61,22 @@ async function deleteEmployee(req,res) {
     }
     
 }
+async function updateEmployee(req,res) {
+    const employeeId=req.params.id;
+    const UpdateData=req.body;
+    try {
+        
+        const updatedEmployee=await employeeService.updateEmployee(employeeId,UpdateData)
+        if(!updatedEmployee){
+            return res.status(404).json({ error:"Employee not found " });
+        }
+        res.json(updatedEmployee)
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+        
+    }
+    
+}
 
-module.exports = { createEmp ,getAllEmployees,getEmployeeByID,deleteEmployee};
+module.exports = { createEmp ,getAllEmployees,getEmployeeByID,deleteEmployee,updateEmployee};

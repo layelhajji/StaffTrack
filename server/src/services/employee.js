@@ -38,6 +38,12 @@ async function deleteEmployee(employeeId) {
     return await Employee.findByIdAndDelete(employeeId)
     
 }
+async function updateEmployee(employeeId,UpdateData) {
+    return await Employee.findByIdAndUpdate(employeeId,UpdateData,{
+        new:true
+    })
+    
+}
 
 
-module.exports = { createEmp ,getAllEmployees,getEmployeeByID,deleteEmployee};
+module.exports = { createEmp ,getAllEmployees,getEmployeeByID,deleteEmployee,updateEmployee};
