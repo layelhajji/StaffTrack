@@ -4,11 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
-    margin:200px;
-    margin-top:240px;
-
-    
+    height: 190px;
+    margin:150px;
+    min-height: 40vh;
+  
     
 }
 form h1{

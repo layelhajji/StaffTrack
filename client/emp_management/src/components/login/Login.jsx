@@ -1,10 +1,7 @@
-
-
 import { Form, Button } from "react-bootstrap";
 import './login.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,39 +9,41 @@ const Login = () => {
         email: "",
         password: ""
     });
+    const [validated, setValidated] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (!formData.email || !formData.password) {
-            alert("Please fill in both email and password.");
-            return;
-        }
-    
-        try {
-            const response = await fetch("http://127.0.0.1:3000/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
-    
-            const result = await response.json();
-            localStorage.setItem("token", result.token);
-    
-            if (response.ok) {
-                navigate("/dashboard");
-                
-            } else {
-                console.error("Failed to login:", result.message);
-                alert(result.message); // Affiche l'erreur au client
+        const form = e.currentTarget;
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        } else {
+            try {
+                const response = await fetch("http://127.0.0.1:3000/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                localStorage.setItem("token", result.token);
+
+                if (response.ok) {
+                    navigate("/dashboard");
+                } else {
+                    console.error("Failed to login:", result.message);
+                    alert(result.message); // Affiche l'erreur au client
+                }
+            } catch (error) {
+                console.error("Error during submission:", error.message);
             }
-        } catch (error) {
-            console.error("Error during submission:", error.message);
         }
+
+        setValidated(true);
     };
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -55,7 +54,7 @@ const Login = () => {
 
     return (
         <div className="formulaire">
-            <Form onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <h1>Login Admin</h1>
                 
                 <Form.Group className="mb-3" controlId="formEmail">
@@ -66,8 +65,13 @@ const Login = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid email address.
+                    </Form.Control.Feedback>
                 </Form.Group>
+                
                 <Form.Group className="mb-3" controlId="formPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
@@ -76,10 +80,14 @@ const Login = () => {
                         name="password"
                         value={formData.password}
                         onChange={handleInputChange}
+                        required
+                        minLength="6"
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a password (minimum 6 characters).
+                    </Form.Control.Feedback>
                 </Form.Group>
                 
-                <br/>
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
@@ -88,5 +96,4 @@ const Login = () => {
     );
 }
 
-export default Login
-
+export default Login;

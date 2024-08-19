@@ -12,48 +12,52 @@ const AddEmp = () => {
         phone: "",
         joinedDate: ""
     });
+    const [validated, setValidated] = useState(false);
 
     const handleSubmit = async (e) => {
+        const form = e.currentTarget;
         e.preventDefault();
-        console.log("Form submitted!");
 
-        if (!formData.EmployeeID || !formData.fullName || !formData.age || !formData.phone || !formData.joinedDate) {
-            alert("All fields are required");
-            return;
-        }
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        } else {
+            console.log("Form submitted!");
 
-        try {
-            const response = await fetch("http://127.0.0.1:3000/api/add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
+            try {
+                const response = await fetch("http://127.0.0.1:3000/api/add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-            const result = await response.json();
-            console.log("Result:", result);
+                const result = await response.json();
+                console.log("Result:", result);
 
-            if (response.ok) {
-                alert("Employee added successfully");
-                console.log("c bon ")
-                navigate("/dashboard");
-            } else if (response.status === 409) {
-                alert("Employee already exists");
-            } else {
-                console.error("Failed to add:", result.message);
+                if (response.ok) {
+                    alert("Employee added successfully");
+                    console.log("c bon ");
+                    navigate("/dashboard");
+                } else if (response.status === 409) {
+                    alert("Employee already exists");
+                } else {
+                    console.error("Failed to add:", result.message);
+                }
+            } catch (error) {
+                console.error("Error during submission:", error.message);
+            } finally {
+                setFormData({
+                    EmployeeID: "",
+                    fullName: "",
+                    age: "",
+                    phone: "",
+                    joinedDate: ""
+                });
             }
-        } catch (error) {
-            console.error("Error during submission:", error.message);
-        } finally {
-            setFormData({
-                EmployeeID: "",
-                fullName: "",
-                age: "",
-                phone: "",
-                joinedDate: ""
-            });
         }
+
+        setValidated(true);
     };
 
     const handleInputChange = (event) => {
@@ -66,8 +70,9 @@ const AddEmp = () => {
 
     return (
         <div className="formulaire">
-            <Form onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <h1>Add Employee</h1>
+
                 <Form.Group className="mb-3" controlId="formEmployeeID">
                     <Form.Label>Employee ID</Form.Label>
                     <Form.Control
@@ -75,9 +80,13 @@ const AddEmp = () => {
                         name="EmployeeID"
                         value={formData.EmployeeID}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide an Employee ID.
+                    </Form.Control.Feedback>
                 </Form.Group>
-                
+
                 <Form.Group className="mb-3" controlId="formFullName">
                     <Form.Label>Full Name</Form.Label>
                     <Form.Control
@@ -85,7 +94,11 @@ const AddEmp = () => {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a full name.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formAge">
@@ -95,7 +108,11 @@ const AddEmp = () => {
                         name="age"
                         value={formData.age}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide an age.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPhone">
@@ -105,7 +122,11 @@ const AddEmp = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a mobile number.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formJoinedDate">
@@ -115,9 +136,13 @@ const AddEmp = () => {
                         name="joinedDate"
                         value={formData.joinedDate}
                         onChange={handleInputChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a joined date.
+                    </Form.Control.Feedback>
                 </Form.Group>
-                
+
                 <Button className="btn custom-button" type="submit">
                     Add
                 </Button>
