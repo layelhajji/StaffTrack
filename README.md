@@ -26,8 +26,8 @@ Employee Management System est une application CRUD (Create, Read, Update, Delet
 
 ## 🛠️ **Technologies utilisées**
 - **Frontend :**
-  - ⚛️ React.js
-  - 🎨 CSS3 / Bootstrap pour le design
+  -  React.js
+  -  CSS3 / Bootstrap pour le design
 - **Backend :**
   -  Node.js
   -  Express.js
